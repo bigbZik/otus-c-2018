@@ -1,0 +1,17 @@
+language: cpp
+before_script:
+- sudo apt-get install libboost-test-dev -y
+script:
+- cd src/hw/hw01
+- cmake .
+- ls -al
+- cmake --build .
+- cmake --build . --target test
+- cmake --build . --target package
+- cd ../../..
+- ls -al src/hw/hw01
+deploy:
+  provider: script
+  skip_cleanup: true
+  script:
+  - curl -T src/hw/hw01/otus-c-2018-hw01-1.0.$TRAVIS_BUILD_NUMBER-Linux.deb -ubigbzik:e7c022b2c695a46f1dd234bc14f25c9ff7fa0d84 "https://api.bintray.com/content/bigbzik/otus-c-2018/hw01/$TRAVIS_BUILD_NUMBER/otus-c-2018-hw01-1.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"

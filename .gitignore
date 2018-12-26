@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#Eclipse
+.ptp-sync-folder
+.settings
+.cproject
+.project
